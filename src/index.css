@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+.active {
+  @apply bg-[#1C2B3C] border-[#000000] border px-4 py-2 rounded-full;
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: auto;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
