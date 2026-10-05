@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <>
-      <header className="bg-[#010F1F] sticky top-0 left-0 right-0 w-full h-20 flex justify-around items-center text-white border-b border-cyan-500 ring-4 ring-cyan-500/10">
+      <header className="bg-[#010F1F] sticky top-0 left-0 right-0 w-full z-10 h-20 flex justify-around items-center text-white border-b border-cyan-500 ring-4 ring-cyan-500/10">
         <div className="flex items-center gap-2">
           <img src="/MyPicture.png" alt="my picture" className="w-14 h-14 rounded-full" />
           <div>
