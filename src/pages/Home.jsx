@@ -1,6 +1,8 @@
   import { DownloadIcon, ArrowDown, TerminalSquareIcon, Layers3, Gauge, GaugeCircleIcon } from "lucide-react";
+import About from "./About";
   export default function HomePage() {
     return (
+      <>
       <section className="relative text-white flex gap-2.5 flex-col justify-center p-16 items-center">
         <div
           className="bg-[#8082ff18] blur-3xl w-[670px] h-[414px]
@@ -61,10 +63,12 @@
             <p className="text-[#C0C1FF]">Uptime Architecture</p>
           </div>
           <div className="flex flex-col items-center justify-center py-2 px-8 gap-1.5">
-            <h2 className="text-3xl font-bold text-[#C7C4D7]">160</h2>
+            <h2 className="text-3xl font-bold text-[#C7C4D7]">164</h2>
             <p className="text-[#C0C1FF]">Github Stars & pushes</p>
           </div>
         </div>
       </section>
+      <About/>
+      </>
     );
   }
