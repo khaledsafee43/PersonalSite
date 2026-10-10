@@ -24,7 +24,7 @@ import About from "./About";
           <p className="px-8 text-center w-[766px] pt-5 p-1 text-[#C7C4D7]">
             Bridging the gap between high-performance distributed backend
             architectures and pixel- perfect, accessible user interfaces.
-            Specialized in TypeScript, React, Next.js, Go, and Cloud Systems.
+            Specialized in TypeScript, React, Next.js, NodeJS, and Cloud Systems.
           </p>
           <div className="flex gap-5 p-4">
             <button className="bg-gradient-to-r py-2.5 px-5 rounded-full flex gap-1 from-[#8083FF]  to-[#00A6E0] text-[#1000A9] font-medium">See My Work <ArrowDown/></button>
