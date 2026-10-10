@@ -9,8 +9,8 @@ export default function About() {
           Passionate About Solving Complex Engineering Problems
         </h1>
       </div>
-      <div className="grid grid-cols-1  gap-x-24 mt-8 p-12 md:grid-cols-2">
-        <div className="bg-[#0D1C2D] text-lg flex flex-col gap-4 p-8 w-[700px] rounded-lg relative ">
+      <div className="grid grid-cols-1  gap-8 mt-8 p-12 md:grid-cols-12">
+        <div className="bg-[#0D1C2D] text-lg col-span-8 p-8 rounded-lg relative ">
           <h2 className="text-2xl font-bold text-[#D4E4FA]">
             Engineering with Dual Mastery in Systems and Interfaces
           </h2>
@@ -34,9 +34,9 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="bg-[#0D1C2D] rounded-lg p-8 flex justify-center items-center">
+        <div className="bg-[#0D1C2D] col-span-4 rounded-lg p-8 flex justify-center items-center">
           <img
-            src="MyPicture.png"
+            src="me.png"
             alt="Khaled Saifee"
             className="rounded-lg w-full h-full"
           />
