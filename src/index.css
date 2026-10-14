@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .active {
-  @apply bg-[#1C2B3C] border-[#000000] border px-4 py-2 rounded-full;
+  @apply bg-[#7BD0FF] font-medium text-[#061525] border px-4 py-2 rounded-full;
 }
 body{
     margin: 0;
@@ -26,5 +26,21 @@ body{
 
   to {
     opacity: 0;
+  }
+}
+
+
+@theme {
+  --animate-background: background-move ease infinite;
+
+  @keyframes background-move {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
   }
 }
