@@ -1,5 +1,7 @@
-export default function login(){
-    return <div>
-        <form></form>
+export default function login() {
+  return (
+    <div>
+      <form></form>
     </div>
+  );
 }
