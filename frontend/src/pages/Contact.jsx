@@ -18,7 +18,7 @@ export default function Contact() {
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
 
-    if (site.email === "YOUR_EMAIL@example.com") {
+    if (site.email === "saifeekhaled1212@example.com") {
       setStatus({
         type: "error",
         message:
