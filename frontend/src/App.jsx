@@ -6,12 +6,8 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import Footer from "./pages/Foooter";
-import { projects } from "../data/projects.js";
+import ClientDashboard from "./pages/ClientDashboard";
 function App() {
-  const [projectDetails, setProjectDetails] = useState(projects);
-  function projectDetails(id) {
-    setProjectDetails((projects) => projects.filter(project));
-  }
   return (
     <>
       <div className="bg-[#051424] min-h-screen">
@@ -22,6 +18,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<ClientDashboard />} />
         </Routes>
         <Footer />
       </div>
