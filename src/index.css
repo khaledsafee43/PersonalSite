@@ -3,11 +3,12 @@
 .active {
   @apply bg-[#7BD0FF] font-medium text-[#061525] border px-4 py-2 rounded-full;
 }
-body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: auto;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: #07111f;
 }
 @keyframes fadeIn {
   from {
@@ -29,7 +30,6 @@ body{
   }
 }
 
-
 @theme {
   --animate-background: background-move ease infinite;
 
@@ -43,4 +43,34 @@ body{
       background-position: 100% 50%;
     }
   }
+}
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+::selection {
+  background: rgba(113, 135, 255, 0.35);
+  color: white;
+}
+section {
+  scroll-margin-top: 88px;
+}
+.container-width {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+.glass {
+  background: rgba(11, 23, 40, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+.gradient-text {
+  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 4px;
 }

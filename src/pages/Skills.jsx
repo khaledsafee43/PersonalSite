@@ -1,68 +1,68 @@
-export default function Skills() {
-    const skillCategories = [
+import { Code2, Server, Database, Wrench } from "lucide-react";
+import SectionHeading from "./SectionHeading.jsx";
+
+const groups = [
   {
-    title: "Frontend Development",
-    description:
-      "Building responsive, interactive, and user-friendly interfaces with modern frontend technologies.",
-    technologies: [
-      "React.js",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
+    title: "Frontend",
+    icon: Code2,
+    items: [
       "HTML5",
       "CSS3",
-      "Vite",
-      "React Router",
+      "JavaScript",
+      "React.js",
+      "Tailwind CSS",
+      "TypeScript",
     ],
   },
   {
-    title: "Backend Development",
-    description:
-      "Developing RESTful APIs, authentication systems, and reliable server-side applications.",
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "REST APIs",
-      "JWT Authentication",
-      "CRUD Operations",
-      "API Integration",
-      "Middleware",
-      "npm",
-    ],
+    title: "Backend",
+    icon: Server,
+    items: ["Node.js", "Express.js", "REST APIs", "Authentication basics"],
   },
   {
-    title: "Databases & Data Management",
-    description:
-      "Designing and managing SQL and NoSQL databases for efficient data storage and retrieval.",
-    technologies: [
-      "MongoDB",
-      "MySQL",
-      "SQL Server",
-      "SQLite",
-      "Database Design",
-      "CRUD Queries",
-    ],
+    title: "Databases",
+    icon: Database,
+    items: ["MongoDB", "MySQL", "SQL Server"],
   },
   {
-    title: "Tools & Development Workflow",
-    description:
-      "Using modern tools to manage code, test APIs, and maintain efficient development workflows.",
-    technologies: [
-      "Git",
-      "GitHub",
-      "VS Code",
-      "Postman",
-      "npm",
-      "Vite",
-      "JSON",
-      "Environment Variables",
-    ],
+    title: "Tools",
+    icon: Wrench,
+    items: ["Git", "GitHub", "VS Code", "Vite", "npm"],
   },
 ];
 
+export default function Skills() {
   return (
-    <div>
-      <h1>Skill page is ready</h1>
-    </div>
+    <section id="skills" className="container-width py-24">
+      <SectionHeading
+        eyebrow="My toolkit"
+        title="Skills & technologies"
+        description="Tools I have learned and used while building web applications. Keep this list honest and be ready to explain each item."
+      />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {groups.map(({ title, icon: Icon, items }) => (
+          <article
+            key={title}
+            className="glass rounded-2xl p-6 transition hover:border-indigo-400/30"
+          >
+            <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-indigo-500/15 text-indigo-300">
+              <Icon size={22} />
+            </div>
+            <h3 className="text-lg font-bold">{title}</h3>
+            <ul className="mt-4 space-y-3">
+              {items.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-sm text-slate-300"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-indigo-300" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
