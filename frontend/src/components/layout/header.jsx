@@ -9,6 +9,7 @@ const links = [
   ["About", "/about"],
   ["Contact", "/contact"],
   ["Login", "/login"],
+  ["Sign Up", "/signUp"],
 ];
 
 export default function Header() {

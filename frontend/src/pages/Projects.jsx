@@ -24,7 +24,6 @@ export default function ProjectsPage() {
                 {project.demo ? <a className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 hover:text-indigo-200" href={project.demo} target="_blank" rel="noreferrer">Live Demo <ExternalLink size={14}/></a> : <span className="text-xs text-amber-200/80">Add live demo URL</span>}
                 <a className="focus-ring ml-auto inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white" href={project.github} target="_blank" rel="noreferrer">GitHub <Github size={15}/><ArrowUpRight size={13}/></a>
               </div>
-              <NavLink to="/pojectDetails" onClick={()=>projectDetails()} className="absolute bg-slate-800 py-1 bottom-14 rounded-2xl px-4 shadow-md shadow-gray-300 right-1">Details</NavLink>
             </div>
           </article>)}
         </div>
