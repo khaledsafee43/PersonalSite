@@ -25,14 +25,14 @@ export default function HomePage() {
               <span className="h-2 w-2 rounded-full bg-emerald-400" /> Available
               for remote opportunities
             </span>
-            <p className="mt-8 text-lg text-slate-300">Hi, I'm</p>
+            <p className="mt-8 text-lg text-slate-700 dark:text-slate-300">Hi, I'm</p>
             <h1 className="mt-1 text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
               <span className="gradient-text">{site.name}</span>
             </h1>
-            <h2 className="mt-5 text-xl font-semibold text-slate-200 sm:text-2xl">
+            <h2 className="mt-5 text-xl font-semibold text-slate-800 dark:text-slate-200 sm:text-2xl">
               {site.role}
             </h2>
-            <p className="mt-5 max-w-xl leading-8 text-slate-400">
+            <p className="mt-5 max-w-xl leading-8 text-slate-600 dark:text-slate-400">
               I build responsive web experiences with React, Tailwind CSS,
               Node.js, and databases. I enjoy turning practical problems into
               clear, useful software.
@@ -46,7 +46,7 @@ export default function HomePage() {
               </a>
               <a
                 href="#contact"
-                className="focus-ring rounded-xl border border-line px-5 py-3 font-semibold text-slate-200 transition hover:border-indigo-400/60 hover:bg-white/5"
+                className="focus-ring rounded-xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-semibold text-slate-800 dark:text-slate-200 transition hover:border-indigo-400/60 hover:bg-slate-100 dark:bg-white/5"
               >
                 Contact Me
               </a>
@@ -69,9 +69,9 @@ export default function HomePage() {
           <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-5 rounded-[2rem] bg-indigo-500/10 blur-2xl" />
             <div className="glass relative rounded-[2rem] p-5 shadow-glow">
-              <div className="rounded-2xl border border-white/10 bg-[#081321] p-5">
+              <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#081321] p-5">
                 <div className="mb-8 flex items-center justify-between">
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-slate-500 dark:text-slate-500">
                     DEVELOPER PROFILE
                   </span>
                   <span className="flex gap-1">
@@ -86,7 +86,7 @@ export default function HomePage() {
                 <h3 className="mt-5 text-center text-xl font-bold">
                   {site.name}
                 </h3>
-                <p className="mt-1 text-center text-sm text-slate-400">
+                <p className="mt-1 text-center text-sm text-slate-600 dark:text-slate-400">
                   Building for the web
                 </p>
                 <div className="mt-6 space-y-3 font-mono text-xs">
@@ -110,7 +110,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-5 -left-5 rounded-xl border border-line bg-panel px-4 py-3 text-sm shadow-xl">
+            <div className="absolute -bottom-5 -left-5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-sm shadow-xl">
               <span className="mr-2 text-emerald-300">●</span> Learning by
               building
             </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
         <a
           href="#projects"
           aria-label="Scroll to projects"
-          className="focus-ring absolute bottom-5 left-1/2 hidden -translate-x-1/2 rounded-full border border-line p-3 text-slate-400 hover:text-white lg:block"
+          className="focus-ring absolute bottom-5 left-1/2 hidden -translate-x-1/2 rounded-full border border-slate-300 dark:border-slate-700 p-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white lg:block"
         >
           <ArrowDown size={18} />
         </a>
@@ -139,7 +139,7 @@ function SocialLink({ href, label, children }) {
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="focus-ring rounded-xl border border-line p-3 text-slate-300 transition hover:border-indigo-400/60 hover:text-indigo-200"
+      className="focus-ring rounded-xl border border-slate-300 dark:border-slate-700 p-3 text-slate-700 dark:text-slate-300 transition hover:border-indigo-400/60 hover:text-indigo-200"
     >
       {children}
     </a>

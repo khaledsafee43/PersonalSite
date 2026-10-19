@@ -103,10 +103,10 @@ export default function SignUp() {
   };
 
   const inputStyle =
-    "w-full rounded-xl border border-white/10 bg-white/[0.04] py-3.5 pl-11 pr-11 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10";
+    "w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] py-3.5 pl-11 pr-11 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-slate-50 dark:focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10";
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050816] px-4 py-8 text-white sm:px-6">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 dark:bg-[#050816] px-4 py-8 text-slate-900 dark:text-white sm:px-6">
 
       {/* Background */}
 
@@ -118,7 +118,7 @@ export default function SignUp() {
 
       <Link
         to="/"
-        className="absolute left-5 top-5 flex items-center gap-2 text-sm text-slate-400 transition hover:text-white sm:left-8 sm:top-8"
+        className="absolute left-5 top-5 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 transition hover:text-slate-900 dark:hover:text-white sm:left-8 sm:top-8"
       >
         <Code2 size={20} className="text-indigo-400" />
         My Portfolio
@@ -126,7 +126,7 @@ export default function SignUp() {
 
       {/* Main card */}
 
-      <section className="relative my-12 grid w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-[#0A1020]/90 shadow-2xl shadow-black/40 lg:grid-cols-2">
+      <section className="relative my-12 grid w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0A1020]/90 shadow-2xl shadow-black/40 lg:grid-cols-2">
 
         {/* Left side */}
 
@@ -146,7 +146,7 @@ export default function SignUp() {
                   Skyrovix
                 </h1>
 
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Build Your Digital Future
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function SignUp() {
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+              <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600 dark:text-slate-400">
                 Manage your projects, follow your progress,
                 and bring your ideas to life.
               </p>
@@ -195,7 +195,7 @@ export default function SignUp() {
 
           </div>
 
-          <p className="relative mt-12 text-xs text-slate-500">
+          <p className="relative mt-12 text-xs text-slate-500 dark:text-slate-500">
             © {new Date().getFullYear()} Skyrovix
           </p>
 
@@ -216,7 +216,7 @@ export default function SignUp() {
 
               <div>
                 <h1 className="font-bold">Skyrovix</h1>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Build Your Digital Future
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function SignUp() {
                 {isLogin ? "Welcome back!" : "Create account"}
               </h2>
 
-              <p className="mt-3 text-sm leading-6 text-slate-400">
+              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
                 {isLogin
                   ? "Enter your details to access your account."
                   : "Join us and start your journey today."}
@@ -242,7 +242,7 @@ export default function SignUp() {
 
             {/* Login / Sign up tabs */}
 
-            <div className="mb-7 grid grid-cols-2 rounded-xl border border-white/10 bg-white/[0.03] p-1">
+            <div className="mb-7 grid grid-cols-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] p-1">
               <button
                 type="button"
                 onClick={() => {
@@ -253,7 +253,7 @@ export default function SignUp() {
                 className={`rounded-lg py-3 text-sm font-semibold transition ${
                   isLogin
                     ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg"
-                    : "text-slate-400 hover:text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
                 Login
@@ -269,7 +269,7 @@ export default function SignUp() {
                 className={`rounded-lg py-3 text-sm font-semibold transition ${
                   !isLogin
                     ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg"
-                    : "text-slate-400 hover:text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
                 Sign Up
@@ -331,7 +331,7 @@ export default function SignUp() {
                 <div className="mb-2 flex items-center justify-between">
                   <label
                     htmlFor="password"
-                    className="text-sm font-medium text-slate-200"
+                    className="text-sm font-medium text-slate-800 dark:text-slate-200"
                   >
                     Password
                   </label>
@@ -349,7 +349,7 @@ export default function SignUp() {
                 <div className="relative">
                   <LockKeyhole
                     size={18}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500"
                   />
 
                   <input
@@ -373,7 +373,7 @@ export default function SignUp() {
                       showPassword ? "Hide password" : "Show password"
                     }
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-white"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
                   >
                     {showPassword ? (
                       <EyeOff size={18} />
@@ -390,7 +390,7 @@ export default function SignUp() {
                 <div>
                   <label
                     htmlFor="confirmPassword"
-                    className="mb-2 block text-sm font-medium text-slate-200"
+                    className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200"
                   >
                     Confirm Password
                   </label>
@@ -398,7 +398,7 @@ export default function SignUp() {
                   <div className="relative">
                     <LockKeyhole
                       size={18}
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500"
                     />
 
                     <input
@@ -422,7 +422,7 @@ export default function SignUp() {
                           : "Show confirmation"
                       }
                       onClick={() => setShowConfirm(!showConfirm)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-white"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
                     >
                       {showConfirm ? (
                         <EyeOff size={18} />
@@ -459,7 +459,7 @@ export default function SignUp() {
 
             {/* Bottom link */}
 
-            <p className="mt-7 text-center text-sm text-slate-400">
+            <p className="mt-7 text-center text-sm text-slate-600 dark:text-slate-400">
               {isLogin
                 ? "Don't have an account?"
                 : "Already have an account?"}
@@ -477,7 +477,7 @@ export default function SignUp() {
               </button>
             </p>
 
-            <p className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500">
+            <p className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-500">
               <ShieldCheck size={15} className="text-emerald-400" />
               Your information is handled securely.
             </p>
@@ -505,13 +505,13 @@ function Input({
     <div>
       <label
         htmlFor={name}
-        className="mb-2 block text-sm font-medium text-slate-200"
+        className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200"
       >
         {label}
       </label>
 
       <div className="relative">
-        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500">
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500">
           {icon}
         </span>
 
@@ -524,7 +524,7 @@ function Input({
           onChange={onChange}
           autoComplete={autoComplete}
           required
-          className="w-full rounded-xl border border-white/10 bg-white/[0.04] py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10"
+          className="w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] py-3.5 pl-11 pr-4 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-slate-50 dark:focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10"
         />
       </div>
     </div>
@@ -541,11 +541,11 @@ function Feature({ icon, title, text }) {
       </div>
 
       <div>
-        <h3 className="text-sm font-semibold text-slate-200">
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
           {title}
         </h3>
 
-        <p className="mt-1 text-xs text-slate-400">
+        <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
           {text}
         </p>
       </div>

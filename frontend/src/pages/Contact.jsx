@@ -105,7 +105,7 @@ export default function Contact() {
           <div className="mt-5">
             <label
               htmlFor="message"
-              className="mb-2 block text-sm font-medium text-slate-200"
+              className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200"
             >
               Message <span className="text-rose-300">*</span>
             </label>
@@ -116,7 +116,7 @@ export default function Contact() {
               required
               minLength={10}
               placeholder="Write your message…"
-              className="focus-ring w-full resize-y rounded-xl border border-line bg-ink/80 px-4 py-3 text-sm text-white placeholder:text-slate-600"
+              className="focus-ring w-full resize-y rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-500"
             />
           </div>
           <button
@@ -135,7 +135,7 @@ export default function Contact() {
             <p
               role="status"
               aria-live="polite"
-              className={`mt-4 rounded-lg border p-3 text-sm ${status.type === "success" ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-200" : status.type === "error" ? "border-rose-400/30 bg-rose-400/10 text-rose-200" : "border-line text-slate-300"}`}
+              className={`mt-4 rounded-lg border p-3 text-sm ${status.type === "success" ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-200" : status.type === "error" ? "border-rose-400/30 bg-rose-400/10 text-rose-200" : "border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300"}`}
             >
               {status.message}
             </p>
@@ -143,7 +143,7 @@ export default function Contact() {
         </form>
         <aside className="glass rounded-2xl p-6 sm:p-8">
           <h3 className="text-xl font-bold">Contact information</h3>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
+          <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
             You can also reach me through these channels. Replace all sample
             links with your own.
           </p>
@@ -189,7 +189,7 @@ function Field({ label, name, type = "text", placeholder, ...props }) {
     <div>
       <label
         htmlFor={name}
-        className="mb-2 block text-sm font-medium text-slate-200"
+        className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200"
       >
         {label} <span className="text-rose-300">*</span>
       </label>
@@ -198,7 +198,7 @@ function Field({ label, name, type = "text", placeholder, ...props }) {
         name={name}
         type={type}
         placeholder={placeholder}
-        className="focus-ring w-full rounded-xl border border-line bg-ink/80 px-4 py-3 text-sm text-white placeholder:text-slate-600"
+        className="focus-ring w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-500"
         {...props}
       />
     </div>
@@ -211,8 +211,8 @@ function ContactItem({ icon: Icon, label, value, href }) {
         <Icon size={19} />
       </span>
       <span>
-        <span className="block text-xs text-slate-500">{label}</span>
-        <span className="mt-1 block break-all text-sm text-slate-200">
+        <span className="block text-xs text-slate-500 dark:text-slate-500">{label}</span>
+        <span className="mt-1 block break-all text-sm text-slate-800 dark:text-slate-200">
           {value}
         </span>
       </span>

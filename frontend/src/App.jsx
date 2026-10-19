@@ -11,7 +11,7 @@ import SignUp from "./pages/SignUp";
 function App() {
   return (
     <>
-      <div className="bg-[#051424] min-h-screen">
+      <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-[#050816] dark:text-slate-100">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -1,0 +1,13 @@
+Theme update included:
+- Dark/light theme context persists in localStorage.
+- Tailwind CSS v4 dark variant remains class-based.
+- Header toggle works on desktop and mobile.
+- Global background, text, glass cards, and gradient text respond to theme.
+- Replaced undefined Tailwind tokens such as dark:bg-ink and dark:border-line.
+- Corrected the app wrapper's conflicting dark background classes.
+
+Test:
+1. npm run dev
+2. Click the Sun/Moon button in the header.
+3. Refresh; the selected theme should remain.
+4. Check Home, Projects, Skills, About, Contact, and Sign Up.

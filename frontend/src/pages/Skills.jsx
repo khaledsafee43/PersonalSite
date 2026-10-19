@@ -53,7 +53,7 @@ export default function Skills() {
               {items.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-sm text-slate-300"
+                  className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-indigo-300" />
                   {item}

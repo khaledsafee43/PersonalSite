@@ -1,76 +1,108 @@
 @import "tailwindcss";
 
-.active {
-  @apply bg-[#7BD0FF] font-medium text-[#061525] border px-4 py-2 rounded-full;
-}
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: auto;
-  background: #07111f;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
+/* Tailwind CSS v4: dark mode is controlled by the .dark class on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --animate-background: background-move ease infinite;
 
   @keyframes background-move {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+:root.dark {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #f8fafc;
+  color: #0f172a;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+:root.dark body {
+  background: #050816;
+  color: #f8fafc;
+}
+
 ::selection {
-  background: rgba(113, 135, 255, 0.35);
-  color: white;
+  background: rgba(99, 102, 241, 0.3);
+  color: inherit;
 }
+
 section {
   scroll-margin-top: 88px;
 }
+
 .container-width {
   width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
 }
+
 .glass {
-  background: rgba(11, 23, 40, 0.82);
-  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.035);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
+
+.dark .glass {
+  background: rgba(11, 23, 40, 0.82);
+  border-color: rgba(148, 163, 184, 0.14);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
 .gradient-text {
-  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+  background: linear-gradient(90deg, #6366f1, #0ea5e9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+
+.dark .gradient-text {
+  background-image: linear-gradient(90deg, #a5b4fc, #60a5fa);
+}
+
 .focus-ring:focus-visible {
-  outline: 2px solid #a5b4fc;
+  outline: 2px solid #818cf8;
   outline-offset: 4px;
+}
+
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
