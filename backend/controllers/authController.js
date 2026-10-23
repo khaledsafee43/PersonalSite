@@ -36,3 +36,50 @@ export const signUp = async (req, res) => {
     res.status(500).json({ message: "Server error during registration" });
   }
 };
+
+// login section
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "please fill in all fields",
+      });
+    }
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "email or password is invalid",
+      });
+    }
+
+    // compaire password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    // create jwt token
+    const token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || "1d" },
+    );
+
+    res.status(200).json({
+      message: "Logined successfully!",
+      token,
+      user: { id: user._id, name: user.fullName, email: user.email },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error during login" });
+  }
+};
