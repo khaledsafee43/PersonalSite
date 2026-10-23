@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import Footer from "./pages/Foooter";
-import ClientDashboard from "./pages/ClientDashboard";
+// import ClientDashboard from "./pages/ClientDashboard";
 import SignUp from "./pages/SignUp";
 function App() {
   return (
