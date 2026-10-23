@@ -2,7 +2,7 @@ const User = require("../models/User.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-export const signUp = async (req, res) => {
+ const signUp = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
     if (!fullName || !email || !password) {
@@ -18,7 +18,7 @@ export const signUp = async (req, res) => {
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const user = User.create({
+    const user = await User.create({
       fullName,
       email,
       password: hashPassword,
@@ -39,7 +39,7 @@ export const signUp = async (req, res) => {
 
 // login section
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -83,3 +83,5 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Server error during login" });
   }
 };
+
+module.exports = { signUp, login };

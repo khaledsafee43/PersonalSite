@@ -6,8 +6,8 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import Footer from "./pages/Foooter";
-// import ClientDashboard from "./pages/ClientDashboard";
 import SignUp from "./pages/SignUp";
+import ClientDashboard from "./pages/clientDashboard/ClientDashboard";
 function App() {
   return (
     <>
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/clientDashboard" element={<ClientDashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />

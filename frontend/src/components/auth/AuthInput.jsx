@@ -4,9 +4,11 @@ export default function AuthInput({
   type = "text",
   placeholder,
   icon,
-  value,
-  onChange,
   autoComplete,
+  register,
+  validation,
+  error,
+  onInputChange,
 }) {
   return (
     <div>
@@ -16,23 +18,25 @@ export default function AuthInput({
       >
         {label}
       </label>
-
       <div className="relative">
-        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500">
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500">
           {icon}
         </span>
         <input
           id={name}
-          name={name}
           type={type}
           placeholder={placeholder}
-          value={value}
-          onChange={onChange}
           autoComplete={autoComplete}
-          required
-          className="w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] py-3.5 pl-11 pr-4 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-slate-50 dark:focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10"
+          aria-invalid={Boolean(error)}
+          {...register(name, { ...validation, onChange: onInputChange })}
+          className={`w-full rounded-xl border bg-white py-3.5 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:bg-slate-50 focus:ring-4 dark:bg-white/[0.04] dark:text-white dark:focus:bg-white/[0.07] ${error ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/10" : "border-slate-200 focus:border-indigo-400 focus:ring-indigo-500/10 dark:border-white/10"}`}
         />
       </div>
+      {error && (
+        <p role="alert" className="mt-2 text-xs text-rose-500">
+          {error.message}
+        </p>
+      )}
     </div>
   );
 }

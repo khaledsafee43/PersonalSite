@@ -15,9 +15,11 @@ import AuthMessage from "./AuthMessage";
 export default function AuthForm({
   isLogin,
   onModeChange,
-  form,
-  onChange,
+  register,
+  handleSubmit,
   onSubmit,
+  errors,
+  watch,
   loading,
   message,
   error,
@@ -25,14 +27,14 @@ export default function AuthForm({
   setShowPassword,
   showConfirm,
   setShowConfirm,
+  onInputChange,
 }) {
   const inputStyle =
-    "w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] py-3.5 pl-11 pr-11 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-slate-50 dark:focus:bg-white/[0.07] focus:ring-4 focus:ring-indigo-500/10";
+    "w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-11 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-indigo-400 focus:bg-slate-50 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-white/[0.04] dark:text-white dark:focus:bg-white/[0.07]";
 
   return (
     <div className="flex items-center justify-center p-6 sm:p-10 lg:p-12">
       <div className="w-full max-w-md">
-        {/* Mobile logo */}
         <div className="mb-8 flex items-center gap-3 lg:hidden">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600">
             <Code2 size={24} />
@@ -45,7 +47,6 @@ export default function AuthForm({
           </div>
         </div>
 
-        {/* Form heading */}
         <div className="mb-8">
           <p className="mb-3 text-sm font-medium text-indigo-400">
             {isLogin ? "WELCOME BACK" : "GET STARTED"}
@@ -60,27 +61,18 @@ export default function AuthForm({
           </p>
         </div>
 
-        {/* Login / Sign up tabs */}
-        <div className="mb-7 grid grid-cols-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] p-1">
+        <div className="mb-7 grid grid-cols-2 rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-white/10 dark:bg-white/[0.03]">
           <button
             type="button"
             onClick={() => onModeChange(true)}
-            className={`rounded-lg py-3 text-sm font-semibold transition ${
-              isLogin
-                ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-            }`}
+            className={`rounded-lg py-3 text-sm font-semibold transition ${isLogin ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg" : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"}`}
           >
             Login
           </button>
           <button
             type="button"
             onClick={() => onModeChange(false)}
-            className={`rounded-lg py-3 text-sm font-semibold transition ${
-              !isLogin
-                ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-            }`}
+            className={`rounded-lg py-3 text-sm font-semibold transition ${!isLogin ? "bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg" : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"}`}
           >
             Sign Up
           </button>
@@ -88,16 +80,21 @@ export default function AuthForm({
 
         <AuthMessage message={message} error={error} />
 
-        <form onSubmit={onSubmit} className="space-y-5">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="space-y-5"
+        >
           {!isLogin && (
             <AuthInput
               label="Full Name"
-              name="name"
+              name="fullName"
               placeholder="Enter your full name"
               icon={<UserRound size={18} />}
-              value={form.name}
-              onChange={onChange}
               autoComplete="name"
+              register={register}
+              error={errors.fullName}
+              onInputChange={onInputChange}
             />
           )}
 
@@ -107,12 +104,12 @@ export default function AuthForm({
             type="email"
             placeholder="you@example.com"
             icon={<Mail size={18} />}
-            value={form.email}
-            onChange={onChange}
             autoComplete="email"
+            register={register}
+            error={errors.email}
+            onInputChange={onInputChange}
           />
 
-          {/* Password */}
           <div>
             <div className="mb-2 flex items-center justify-between">
               <label
@@ -130,36 +127,36 @@ export default function AuthForm({
                 </Link>
               )}
             </div>
-
             <div className="relative">
               <LockKeyhole
                 size={18}
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
               />
               <input
                 id="password"
-                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                value={form.password}
-                onChange={onChange}
                 autoComplete={isLogin ? "current-password" : "new-password"}
-                minLength={8}
-                required
-                className={inputStyle}
+                aria-invalid={Boolean(errors.password)}
+                {...register("password", { onChange: onInputChange })}
+                className={`${inputStyle} ${errors.password ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/10" : ""}`}
               />
               <button
                 type="button"
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
+            {errors.password && (
+              <p role="alert" className="mt-2 text-xs text-rose-500">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
-          {/* Confirm password */}
           {!isLogin && (
             <div>
               <label
@@ -171,19 +168,16 @@ export default function AuthForm({
               <div className="relative">
                 <LockKeyhole
                   size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
                 />
                 <input
                   id="confirmPassword"
-                  name="confirmPassword"
                   type={showConfirm ? "text" : "password"}
                   placeholder="Confirm your password"
-                  value={form.confirmPassword}
-                  onChange={onChange}
                   autoComplete="new-password"
-                  minLength={8}
-                  required
-                  className={inputStyle}
+                  aria-invalid={Boolean(errors.confirmPassword)}
+                  {...register("confirmPassword", { onChange: onInputChange })}
+                  className={`${inputStyle} ${errors.confirmPassword ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/10" : ""}`}
                 />
                 <button
                   type="button"
@@ -191,15 +185,26 @@ export default function AuthForm({
                     showConfirm ? "Hide confirmation" : "Show confirmation"
                   }
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-slate-900 dark:hover:text-white"
                 >
                   {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              {errors.confirmPassword && (
+                <p role="alert" className="mt-2 text-xs text-rose-500">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
+              {watch("confirmPassword") &&
+                watch("password") === watch("confirmPassword") &&
+                !errors.confirmPassword && (
+                  <p className="mt-2 text-xs text-emerald-500">
+                    Passwords match.
+                  </p>
+                )}
             </div>
           )}
 
-          {/* Submit button */}
           <button
             type="submit"
             disabled={loading}
@@ -219,7 +224,6 @@ export default function AuthForm({
           </button>
         </form>
 
-        {/* Bottom link */}
         <p className="mt-7 text-center text-sm text-slate-600 dark:text-slate-400">
           {isLogin ? "Don't have an account?" : "Already have an account?"}
           <button
@@ -231,7 +235,7 @@ export default function AuthForm({
           </button>
         </p>
 
-        <p className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-500">
+        <p className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500">
           <ShieldCheck size={15} className="text-emerald-400" />
           Your information is handled securely.
         </p>
