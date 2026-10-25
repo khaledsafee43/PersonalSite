@@ -9,8 +9,6 @@ import {
   Wallet,
   Settings,
   Rocket,
-  Sun,
-  ChevronDown,
   X,
 } from "lucide-react";
 
@@ -34,7 +32,6 @@ const menuItems = [
     title: "Messages",
     path: "/messages",
     icon: MessageSquare,
-    badge: 3,
   },
   {
     title: "Files & Documents",
@@ -134,11 +131,6 @@ export default function DashboardSidebar({
                   {item.title}
                 </span>
 
-                {item.badge && (
-                  <span className="flex h-[14px] min-w-[14px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] text-white">
-                    {item.badge}
-                  </span>
-                )}
               </NavLink>
             );
           })}
@@ -167,18 +159,8 @@ export default function DashboardSidebar({
           </NavLink>
         </div>
 
-        {/* Theme Button */}
-        <div className="shrink-0 border-t border-white/5 px-3 py-3">
-          <button
-            type="button"
-            className="flex h-[27px] w-full items-center gap-1.5 rounded-md border border-slate-700/70 px-2 text-[9px] text-slate-300 transition hover:bg-white/5"
-          >
-            <Sun size={13} className="text-amber-300" />
-
-            <span>Light Mode</span>
-
-            <ChevronDown size={11} className="ml-auto" />
-          </button>
+        <div className="shrink-0 border-t border-white/5 px-4 py-4 text-[10px] text-slate-400">
+          Client workspace · Secure account
         </div>
       </aside>
     </>

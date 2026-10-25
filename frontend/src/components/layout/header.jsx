@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
+import { usePortfolio } from "../../context/PortfolioContext";
 
 const links = [
   ["Home", "/"],
@@ -15,6 +16,7 @@ const links = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { site } = usePortfolio();
   return (
     <header className="sticky left-0 right-0 top-0 z-50 w-full border-b border-slate-200 bg-white text-slate-900 shadow-md transition-colors dark:border-cyan-500 dark:bg-[#010F1F] dark:text-white dark:shadow-[0_4px_20px_rgba(34,211,238,0.08)]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
@@ -29,7 +31,7 @@ export default function Header() {
             </span>
           </span>
           <span className="font-bold tracking-tight text-slate-900 dark:text-white">
-            Khaled<span className="text-indigo-300">Saifee.</span>
+            {site.name || "Portfolio"}<span className="text-indigo-300">.</span>
           </span>
         </div>
         <nav

@@ -7,7 +7,7 @@ import AuthFeatures from "../components/auth/AuthFeatures";
 import AuthForm from "../components/auth/AuthForm";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api";
+import { api } from "../services/api";
 
 const loginSchema = z.object({
   fullName: z.string().optional(),
@@ -103,19 +103,7 @@ export default function SignUp() {
             password: formData.password,
           };
 
-      const response = await fetch(`${API_URL}${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.message || "Request failed. Please try again.");
-      }
+      const data = await api.post(endpoint, payload);
 
       if (isLogin) {
         if (!data.token) {
@@ -125,6 +113,7 @@ export default function SignUp() {
         }
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user || data.admin || {}));
 
         setMessage(data.message || "Login successful!");
 

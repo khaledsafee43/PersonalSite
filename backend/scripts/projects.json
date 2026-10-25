@@ -1,0 +1,76 @@
+[
+  {
+    "title": "ShopFlow",
+    "category": "E-commerce",
+    "description": "An online shop interface for browsing products and managing a shopping cart.",
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "image": "Shopflow.png",
+    "demo": "https://shop-flow-ochre.vercel.app",
+    "github": "https://github.com/khaledsafee43/ShopFlow.git"
+  },
+  {
+    "title": "Search Movies",
+    "category": "E-commerce",
+    "description": "A movie search application for discovering films.",
+    "stack": [
+      "React",
+      "Tailwind CSS",
+      "API"
+    ],
+    "image": "UsePopcorn.png",
+    "demo": "https://use-popcorn-mu-six.vercel.app",
+    "github": "https://github.com/"
+  },
+  {
+    "title": "Daily Tasks",
+    "category": "Checking Tasks",
+    "description": "A simple project that helps users manage daily tasks.",
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "image": "DailyTasks.png",
+    "demo": "https://daily-task-6tejf704h-khalids-projects-e74a2ee2.vercel.app",
+    "github": "https://github.com/khaledsafee43/DailyTask.git"
+  },
+  {
+    "title": "Quiz App",
+    "category": "Testing place",
+    "description": "A quiz application for testing knowledge across subjects.",
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "image": "QuizApp.png",
+    "demo": "https://quiz-grl8989ec-khalids-projects-e74a2ee2.vercel.app",
+    "github": "https://github.com/khaledsafee43/Quiz-App.git"
+  },
+  {
+    "title": "FAR WAY",
+    "category": "Travel Planning",
+    "description": "A single-page application for saving things needed for a trip.",
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "image": "FarWay.png",
+    "demo": "https://hbc-far-a7biw6vra-khalids-projects-e74a2ee2.vercel.app",
+    "github": "https://github.com/khaledsafee43/HBC-FAR-WAY.git"
+  },
+  {
+    "title": "Developer Portfolio",
+    "category": "Restaurant Website",
+    "description": "A responsive Little Lemon restaurant website project.",
+    "stack": [
+      "React",
+      "Tailwind CSS",
+      "Vite"
+    ],
+    "image": "LettleLemon.png",
+    "demo": "https://fastidious-twilight-e8d2a7.netlify.app",
+    "github": "https://github.com/khaledsafee43/Lettle-Lemon.git"
+  }
+]

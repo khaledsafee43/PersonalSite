@@ -8,64 +8,30 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading.jsx";
-import { site } from "../data/site.js";
+import { usePortfolio } from "../context/PortfolioContext";
+import { api } from "../services/api";
 
 export default function Contact() {
   const [status, setStatus] = useState({ type: "idle", message: "" });
+  const { site } = usePortfolio();
 
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
-
-    if (site.email === "saifeekhaled1212@example.com") {
-      setStatus({
-        type: "error",
-        message:
-          "Please configure your real email in src/data/site.js and Contact.jsx before sending.",
-      });
-      return;
-    }
-
     setStatus({ type: "loading", message: "Sending your message…" });
     const data = new FormData(form);
-    data.append("_subject", `Portfolio message from ${data.get("name")}`);
-    data.append("_captcha", "false");
-
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(Object.fromEntries(data.entries())),
-        },
-      );
-      const result = await response.json();
-      if (
-        !response.ok ||
-        result.success === "false" ||
-        result.success === false
-      ) {
-        throw new Error(
-          result.message || "The message could not be sent. Please try again.",
-        );
-      }
-      setStatus({
-        type: "success",
-        message: "Message submitted successfully. Thank you for reaching out!",
+      const result = await api.post("/public/contact", {
+        name: data.get("name"),
+        email: data.get("email"),
+        subject: data.get("subject"),
+        message: data.get("message"),
       });
+      setStatus({ type: "success", message: result.message || "Message sent successfully." });
       form.reset();
     } catch (error) {
-      setStatus({
-        type: "error",
-        message:
-          error.message ||
-          "Sending failed. Please try again later or email me directly.",
-      });
+      setStatus({ type: "error", message: error.message || "Could not send your message." });
     }
   }
 

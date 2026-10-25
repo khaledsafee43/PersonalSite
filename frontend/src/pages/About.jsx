@@ -1,34 +1,32 @@
 import { BookOpen, Rocket, Target, Heart } from "lucide-react";
-import SectionHeading from "./SectionHeading.jsx";
+import SectionHeading from "./SectionHeading";
+import { usePortfolio } from "../context/PortfolioContext";
 
 const values = [
   { icon: BookOpen, title: "Keep learning", text: "Strengthen fundamentals and learn from feedback." },
-  { icon: Rocket, title: "Build projects", text: "Turn concepts into practical, usable applications." },
-  { icon: Target, title: "Solve problems", text: "Focus on clear user needs and maintainable solutions." },
+  { icon: Rocket, title: "Build projects", text: "Turn concepts into practical applications." },
+  { icon: Target, title: "Solve problems", text: "Focus on user needs and maintainable solutions." },
   { icon: Heart, title: "Work with care", text: "Value accessibility, reliability, and clean interfaces." },
 ];
 
 export default function About() {
-  return (
-    <section id="about" className="border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#091423] py-24">
-      <div className="container-width">
-        <SectionHeading eyebrow="A little about me" title="My journey & goals" description="A short, authentic introduction to the person behind the code." />
-        <div className="grid items-start gap-10 lg:grid-cols-[.8fr_1.2fr]">
-          <div className="glass rounded-2xl p-7">
-            <div className="grid aspect-[4/3] place-items-center rounded-xl border border-indigo-300/20 bg-gradient-to-br from-indigo-500/20 via-slate-900 to-sky-400/10">
-              <div className="text-center"><div className="mx-auto grid h-24 w-24 place-items-center rounded-full border border-indigo-300/40 bg-indigo-500/20 text-3xl font-black text-indigo-200">KS</div><p className="mt-4 font-semibold">Khalid Saifee</p><p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Full Stack Web Developer</p></div>
-            </div>
-            <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-400">Replace this profile card with your own professional photo if you have one.</p>
-          </div>
-          <div>
-            <p className="leading-8 text-slate-700 dark:text-slate-300">I'm a web developer focused on building responsive user interfaces and practical web applications. My learning journey includes React, Tailwind CSS, Node.js, APIs, and database fundamentals.</p>
-            <p className="mt-4 leading-8 text-slate-600 dark:text-slate-400">I learn by building projects, reviewing mistakes, and improving step by step. My goal is to keep growing as a developer and contribute to useful products with clear, maintainable code.</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {values.map(({ icon: Icon, title, text }) => <div key={title} className="rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900/50 p-4"><Icon className="text-indigo-300" size={21}/><h3 className="mt-3 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{text}</p></div>)}
-            </div>
-          </div>
+  const { site, about, loading } = usePortfolio();
+  return <section id="about" className="border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#091423] py-24">
+    <div className="container-width">
+      <SectionHeading eyebrow="A little about me" title={about.title || "My journey & goals"} description="Profile information is loaded from the backend."/>
+      {loading && <p className="mb-4 text-sm text-slate-500">Loading profile…</p>}
+      <div className="grid items-start gap-10 lg:grid-cols-[.8fr_1.2fr]">
+        <div className="glass rounded-2xl p-7 text-center">
+          <img src="/MyPicture.png" alt={site.name} className="mx-auto h-32 w-32 rounded-full object-cover" onError={(e)=>{e.currentTarget.style.display="none"}}/>
+          <h3 className="mt-5 text-xl font-bold">{site.name}</h3><p className="mt-1 text-sm text-slate-500">{site.role}</p>
+          {about.location && <p className="mt-3 text-sm text-slate-500">{about.location}</p>}
+          {about.availability && <p className="mt-2 text-sm text-emerald-500">{about.availability}</p>}
+        </div>
+        <div>
+          <p className="leading-8 text-slate-700 dark:text-slate-300">{about.description || "About information will appear here when it is added in the admin panel."}</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">{values.map(({icon:Icon,title,text})=><div key={title} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 p-4"><Icon className="text-indigo-400" size={21}/><h3 className="mt-3 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></div>)}</div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }

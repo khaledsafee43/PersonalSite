@@ -22,7 +22,7 @@ export default function DashboardLayout() {
         />
 
         {/* Dashboard Pages */}
-        <main className="min-h-[calc(100vh-65px)] min-w-0 bg-[#f4f7fc] p-3 sm:p-4">
+        <main className="min-h-[calc(100vh-65px)] min-w-0 bg-[#f4f7fc] px-3 pb-4 pt-[80px] sm:px-4">
           <Outlet />
         </main>
       </div>
