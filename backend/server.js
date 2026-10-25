@@ -16,39 +16,24 @@ const app = express();
 
 app.disable("x-powered-by");
 
-// -------------------------------------
-// 1. Allowed frontend origins
-// -------------------------------------
+app.use(helmet());
 
-const defaultOrigins = [
+// Allowed frontend origins
+const allowedOrigins = [
   "https://personal-site-ten-lilac-56.vercel.app",
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",
+  ...(process.env.CLIENT_ORIGIN || "")
+    .split(",")
+    .map((origin) => origin.trim().replace(/\/+$/, ""))
+    .filter(Boolean),
 ];
-
-const allowedOrigins = [
-  ...new Set(
-    [
-      ...defaultOrigins,
-      ...(process.env.CLIENT_ORIGIN || "")
-        .split(",")
-        .map((origin) => origin.trim()),
-    ]
-      .map((origin) => origin.replace(/\/+$/, ""))
-      .filter(Boolean),
-  ),
-);
-
-// -------------------------------------
-// 2. CORS middleware
-// Must run before API routes
-// -------------------------------------
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests without an Origin header.
+      // Requests without an Origin header, such as server-to-server calls.
       if (!origin) {
         return callback(null, true);
       }
@@ -63,45 +48,17 @@ app.use(
 
       return callback(null, false);
     },
-
-    methods: [
-      "GET",
-      "POST",
-      "PUT",
-      "PATCH",
-      "DELETE",
-      "OPTIONS",
-    ],
-
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-    ],
-
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     optionsSuccessStatus: 204,
   }),
 );
 
-// -------------------------------------
-// 3. Security and body parsing
-// -------------------------------------
-
-app.use(helmet());
-
 app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 
-app.use(
-  express.urlencoded({
-    extended: true,
-    limit: "1mb",
-  }),
-);
-
-// -------------------------------------
-// 4. Health check routes
-// -------------------------------------
-
+// Health checks
 app.get("/", (_req, res) => {
   res.json({
     success: true,
@@ -117,28 +74,18 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// -------------------------------------
-// 5. Main API routes
-// -------------------------------------
-
+// Main API routes
 app.use("/api/auth", authRoutes);
-
 app.use("/api/public", publicRoutes);
-
 app.use("/api/client", clientRoutes);
-
 app.use("/api/admin", adminRoutes);
 
-// -------------------------------------
-// 6. Compatibility routes for Admin Panel
-// -------------------------------------
-
+// Compatibility routes for the existing admin panel
 app.use("/api/content", (req, res, next) => {
   if (req.method === "GET" && req.path === "/public") {
     return res.status(400).json({
       success: false,
-      message:
-        "Use /api/public/content/:type for public content.",
+      message: "Use /api/public/content/:type for public content.",
     });
   }
 
@@ -155,10 +102,7 @@ app.use("/api/dashboard", (req, res, next) => {
 
 app.use("/api", adminRoutes);
 
-// -------------------------------------
-// 7. Not found handler
-// -------------------------------------
-
+// Not found handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -166,10 +110,7 @@ app.use((req, res) => {
   });
 });
 
-// -------------------------------------
-// 8. Error handler
-// -------------------------------------
-
+// Error handler
 app.use((error, _req, res, _next) => {
   if (error && error.code === 11000) {
     return res.status(409).json({
@@ -192,6 +133,13 @@ app.use((error, _req, res, _next) => {
     });
   }
 
+  if (error && error.message && error.message.includes("CORS")) {
+    return res.status(403).json({
+      success: false,
+      message: error.message,
+    });
+  }
+
   console.error(error);
 
   return res.status(error.status || 500).json({
@@ -203,42 +151,25 @@ app.use((error, _req, res, _next) => {
   });
 });
 
-// -------------------------------------
-// 9. Start server
-// -------------------------------------
-
+// Start server
 const port = Number(process.env.PORT) || 5000;
 
 async function startServer() {
-  if (
-    !process.env.JWT_SECRET ||
-    process.env.JWT_SECRET.length < 32
-  ) {
+  if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
     throw new Error(
       "JWT_SECRET must be set and contain at least 32 characters.",
     );
   }
 
   await connectDB();
-
   await ensureAdmin();
 
   app.listen(port, () => {
-    console.log(
-      `PersonalSite API is running on port ${port}`,
-    );
-
-    console.log(
-      "Allowed frontend origins:",
-      allowedOrigins,
-    );
+    console.log(`PersonalSite API is running on port ${port}`);
   });
 }
 
 startServer().catch((error) => {
-  console.error(
-    `Server startup failed: ${error.message}`,
-  );
-
+  console.error(`Server startup failed: ${error.message}`);
   process.exit(1);
 });
